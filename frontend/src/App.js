@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import './App.css'; // import the CSS file
+import './App.css'; 
 
-const API_BASE = 'http://localhost:5050/api/v1';
+const API_BASE = 'http://192.168.12.224:5050/api/v1';
 
 function App() {
-  const [bookings, setBookings] = useState([]);
-  const [form, setForm] = useState({ Date: '', Room: '', Type: '', Slot: '', Host: '' });
+  const [bookings, setBookings] = useState([]); 
+  const [form, setForm] = useState({ Date: '', Room: '', Type: '', Slot: '', Host: '' }); 
   const [editingId, setEditingId] = useState(null);
 
-  const fetchBookings = async () => {
+  const fetchBookings = async () => { 
     try {
-      const res = await fetch(`${API_BASE}/getalluser`);
+      const res = await fetch(`${API_BASE}/getalluser`); 
       if (!res.ok) throw new Error('Failed to fetch bookings');
-      const data = await res.json();
-      setBookings(data);
-    } catch (err) {
+      const data = await res.json(); 
+      setBookings(data);   
+    } catch (err) {  
       alert(err.message);
     }
   };
 
   useEffect(() => {
-    fetchBookings();
+    fetchBookings();   
   }, []);
 
   const handleChange = (e) => {

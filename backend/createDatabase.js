@@ -8,7 +8,6 @@ const conn = mysql.createConnection({
   port: process.env.PORT_NUMBER
 });
 
-// 1. Create the database
 conn.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME}`, (err) => {
   if (err) {
     console.error('Failed to create database:', err.message);
@@ -16,14 +15,13 @@ conn.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME}`, (err) =
   }
   console.log(`Database "${process.env.DATABASE_NAME}" created or already exists`);
 
-  // 2. Switch to the new DB
   conn.changeUser({ database: process.env.DATABASE_NAME }, (err) => {
     if (err) {
       console.error('Failed to switch to new database:', err.message);
       return;
     }
 
-    // 3. Create the bookings table
+    // Create the bookings table
     const createTable = `
       CREATE TABLE IF NOT EXISTS bookings (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,3 +43,4 @@ conn.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DATABASE_NAME}`, (err) =
     });
   });
 });
+

@@ -1,0 +1,54 @@
+services:
+  mysql-db:
+    image: mysql:8.3.0
+    container_name: mysql-db
+    restart: unless-stopped
+    ports: 
+      - "3310:3306"
+    environment:
+      MYSQL_DATABASE: "Booking"
+      MYSQL_ROOT_PASSWORD: "1234"
+    volumes: 
+      - mysql-data:/var/lib/mysql
+    networks:
+      - meetingroom-booking-system-network
+
+  backend-app:
+    build:
+      context: ./backend
+      dockerfile:  Dockerfiles/Dockerfile
+    image: meetingroom-backend
+    container_name: backend-app
+    restart: always
+    ports: 
+      - "5050:5050"
+    environment:
+      HOST_NAME: mysql-db
+      USER_NAME: root
+      PORT_NUMBER: 3306
+      PASSWORD: 1234
+      DATABASE_NAME: Booking
+    depends_on: 
+      - mysql-db
+    networks:
+      - meetingroom-booking-system-network
+
+  frontend-app:
+    build:
+      context: ./frontend
+      dockerfile:  Dockerfiles/Dockerfile
+    image: meetingroom-frontend
+    container_name: frontend-app
+    restart: always
+    ports: 
+      - "3000:80"
+    depends_on: 
+      - backend-app
+    networks:
+      - meetingroom-booking-system-network
+
+volumes:
+  mysql-data:
+
+networks:
+  meetingroom-booking-system-network:

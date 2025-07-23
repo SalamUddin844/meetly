@@ -13,7 +13,7 @@ app.use(userRouter);
 
 
 
-app.listen(5050,
+app.listen(5050,'0.0.0.0',
     () => {
         console.log('Server running on http://localhost:5050');
     });

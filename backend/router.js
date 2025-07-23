@@ -4,6 +4,7 @@ const db = require('./db');
 
 // Get all meeting info
 router.get('/api/v1/getalluser', (req, res) => {
+    
     db.query('SELECT * FROM bookings', (err, rows) => {
         if (err) return res.status(500).json({ error: err.message });
         res.json(rows);
