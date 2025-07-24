@@ -10,9 +10,13 @@ A full-stack web application for booking meeting rooms and time slots within an 
 
 🛠️ Tech Stack
 Frontend: React.js
+
 Backend: Node.js + Express
+
 Database: MySQL
+
 Containerization: Docker, Docker Compose
+
 Environment: .env.example for configuration management
 
 📦 Installation
