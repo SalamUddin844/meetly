@@ -1,4 +1,5 @@
-🏢 Meeting Room and Slot Booking System
+🏢 Meeting Room and Slot Booking System.
+
 A full-stack web application for booking meeting rooms and time slots within an organization. Built to simplify internal scheduling and avoid double bookings.
 
 
